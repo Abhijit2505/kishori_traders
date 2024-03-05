@@ -43,8 +43,13 @@
       .form-group {
         margin-bottom: 10px; /* Adjust margin-bottom as needed */
     }
+    .form-control{
+      font-size:15px;
+    }
     .requiredField{
-      margin-bottom: 5px;
+      margin-bottom: 7px;
+      font-size:15px;
+      font-weight: bold;
     }
     .asteriskField{
       margin-left:2px;
@@ -78,9 +83,14 @@
           </a>
           <!-- Menu: main ul -->
           <ul class="menu-list flex-grow-1 mt-3">
-            <li>
+            {% comment %} <li>
               <a class="m-link" href="{% url 'index' %}"
                 ><i class="icofont-home fs-5"></i> <span>Analytics</span></a
+              >
+            </li> {% endcomment %}
+            <li>
+              <a class="m-link" href="{% url 'index' %}"
+                ><i class="icofont-home fs-5"></i> <span>Home</span></a
               >
             </li>
             <li>
@@ -91,6 +101,16 @@
             <li>
               <a class="m-link" href="{% url 'test-report' %}"
                 ><i class="icofont-notepad fs-5"></i> <span>Test Report</span></a
+              >
+            </li>
+            <li>
+              <a class="m-link" href="{% url 'winding-data' %}"
+                ><i class="icofont-notepad fs-5"></i> <span>Winding Data</span></a
+              >
+            </li>
+            <li>
+              <a class="m-link" href="{% url 'quotation-without-sow' %}"
+                ><i class="icofont-notepad fs-5"></i> <span>Quotation (Without SoW)</span></a
               >
             </li>
            

@@ -18,3 +18,13 @@ def testReport(request):
         'form':form,
     }
     return render(request, 'test_report.html',context=context)
+
+def windingData(request):
+    form = WindingDataForm()
+    context = {
+        'form':form,
+    }
+    return render(request, 'winding_data.html',context=context)
+
+def quotationWithoutSow(request):
+    return render(request, 'quotation_without_sow.html')

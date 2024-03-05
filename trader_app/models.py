@@ -1,5 +1,15 @@
 from django.db import models
 
+
+class Photo(models.Model):
+    image = models.ImageField(upload_to='photos/')
+
+    def __str__(self):
+        return self.image
+    
+    class Meta:
+        verbose_name_plural = "photos"
+
 # Create your models here.
 class jobRegister(models.Model):
     job_no = models.CharField(max_length=200)
@@ -39,6 +49,8 @@ class jobRegister(models.Model):
     other_1 = models.TextField()
     other_2 = models.TextField()
     our_bill_or_challan_no = models.CharField(max_length=200)
+    inspection_photos = models.ManyToManyField(Photo,help_text="Select multiple photos")
+
 
     def __str__(self):
         return self.job_no
@@ -94,8 +106,47 @@ class TestReport(models.Model):
     class Meta:
         verbose_name_plural = "Test Reports"
 
+class WindingData(models.Model):
+    job = models.ForeignKey(jobRegister, on_delete=models.CASCADE)
+    product = models.CharField(max_length=500)
+    make = models.CharField(max_length=500)
+    kw = models.CharField(max_length=500)
+    pole_rpm = models.CharField(max_length=500)
+    ph = models.CharField(max_length=500)
+    no_of_slots = models.CharField(max_length=500)
+    running_wire_gauge = models.CharField(max_length=500)
+    running_pitch = models.CharField(max_length=500)
+    running_turn = models.CharField(max_length=500)
+    starting_wire_gauge = models.CharField(max_length=500)
+    starting_pitch = models.CharField(max_length=500)
+    starting_turn = models.CharField(max_length=500)
+    coil_weight = models.CharField(max_length=500)
+    total_weight = models.CharField(max_length=500)
+    core_length = models.CharField(max_length=500)
 
+    def __str__(self):
+        return self.job.job_no + "/" + self.product + "/" + self.make
+    
+    class Meta:
+        verbose_name_plural = "Test Reports"
 
+class scope_of_work(models.Model):
+    job = models.ForeignKey(jobRegister, on_delete=models.CASCADE)
+    ref_no = models.CharField(max_length=500)
+    date = models.DateField()
+    to = models.TextField(default="<name of the officer>\n<designation>\n<address_line>\n")
+    sub = models.TextField()
+    ref = models.TextField()
+    scope_of_work = models.TextField()
+    testing_and_inspection = models.TextField()
+    terms_condition = models.TextField()
+    
+
+    def __str__(self):
+        return self.job.job_no + "/" + self.ref_no
+    
+    class Meta:
+        verbose_name_plural = "Scope of Works"
 
 
 
