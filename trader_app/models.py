@@ -140,7 +140,7 @@ class scope_of_work(models.Model):
     scope_of_work = models.TextField()
     testing_and_inspection = models.TextField()
     terms_condition = models.TextField()
-    
+
 
     def __str__(self):
         return self.job.job_no + "/" + self.ref_no
@@ -148,7 +148,43 @@ class scope_of_work(models.Model):
     class Meta:
         verbose_name_plural = "Scope of Works"
 
+class Quotation(models.Model):
+    job = models.ForeignKey(jobRegister, on_delete=models.CASCADE)
+    date = models.DateField()
+    quotation_no = models.CharField(max_length=200)
+    quotation_file = models.FileField(upload_to='quotations/')
+    comments = models.TextField(blank=True,null=True,help_text="comments if any")
 
+    def __str__(self):
+        return self.job.job_no + "(Quotation No : )" + self.quotation_no
+    
+    class Meta:
+        verbose_name_plural = "Quotations"
 
+class InspectionReport(models.Model):
+    job = models.ForeignKey(jobRegister, on_delete=models.CASCADE)
+    ref_no = models.CharField(max_length=500)
+    date = models.DateField()
+    to = models.TextField(default="<name of the officer>\n<designation>\n<address_line>\n")
+    sub = models.TextField()
+    image_captions = models.TextField(help_text="Enter captions separated by comma",blank=True,null=True)
+    inspection_actual_report = models.TextField()
+    comments = models.TextField(blank=True,null=True,help_text="comments if any")
 
+    def __str__(self):
+        return self.job.job_no + "/" + self.sub
+    
+    class Meta:
+        verbose_name_plural = "Inspection Reports"
 
+class TestReportDocument(models.Model):
+    job = models.ForeignKey(jobRegister, on_delete=models.CASCADE)
+    motor_details = models.TextField()
+    jobs_tests_carried_out = models.TextField()
+    customer_details = models.TextField()
+
+    def __str__(self):
+        return self.job.job_no
+    
+    class Meta:
+        verbose_name_plural = "Test Report Documents"

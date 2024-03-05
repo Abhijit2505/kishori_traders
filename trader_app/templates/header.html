@@ -39,6 +39,7 @@
       rel="stylesheet"
       href="{% static 'assets/css/icofont.min.css' %}"
     />
+    {{ form.media }}
     <style>
       .form-group {
         margin-bottom: 10px; /* Adjust margin-bottom as needed */
@@ -93,14 +94,19 @@
                 ><i class="icofont-home fs-5"></i> <span>Home</span></a
               >
             </li>
-            <li>
+            {% comment %} <li>
               <a class="m-link" href="{% url 'job-register' %}"
                 ><i class="icofont-chart-flow fs-5"></i> <span>Job Register</span></a
               >
             </li>
             <li>
               <a class="m-link" href="{% url 'test-report' %}"
-                ><i class="icofont-notepad fs-5"></i> <span>Test Report</span></a
+                ><i class="icofont-notepad fs-5"></i> <span>Test Report Data</span></a
+              >
+            </li>
+            <li>
+              <a class="m-link" href="{% url 'test-report-document' %}"
+                ><i class="icofont-notepad fs-5"></i> <span>Test Report Document</span></a
               >
             </li>
             <li>
@@ -110,9 +116,19 @@
             </li>
             <li>
               <a class="m-link" href="{% url 'quotation-without-sow' %}"
-                ><i class="icofont-notepad fs-5"></i> <span>Quotation (Without SoW)</span></a
+                ><i class="icofont-notepad fs-5"></i> <span>Quotations</span></a
               >
             </li>
+            <li>
+              <a class="m-link" href="{% url 'sow-quotation' %}"
+                ><i class="icofont-notepad fs-5"></i> <span>SoW Quotations</span></a
+              >
+            </li>
+            <li>
+              <a class="m-link" href="{% url 'inspection-report' %}"
+                ><i class="icofont-notepad fs-5"></i> <span>Inspection Report</span></a
+              >
+            </li> {% endcomment %}
            
           <button
             type="button"
